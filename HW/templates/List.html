@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+          body
+      {
+        margin : 0px;
+      }
+
+      #container
+      {
+        width : 960px;
+        margin : 0 auto 0;
+      }
+
+      #header
+      {
+        width : 100%;
+        height : 80px;
+        background-color : pink;
+      }
+
+      <!-- #left{
+        width : 20%;
+        height:500px;
+        float : left;
+        background-color : green;
+      } -->
+
+      #left{
+        width : 50%;
+        height:450px;
+        float : left;
+        background-color : rgb(255, 153, 102);
+      }
+
+      #right{
+        width : 50%;
+        height:450px;
+        float : right;
+        background-color : rgb(255, 204, 153);
+      }
+
+      #footer_left
+      {
+        width : 50%;
+        height : 230px;
+        background-color : rgb(255, 153, 51);
+        float : left;
+
+      }
+      #footer_right
+      {
+        width : 50%;
+        height : 230px;
+        float : right;
+        background-color : rgb(204, 102, 0) ;
+
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="container">
+      <div id="header">
+        <h1 style="text-align:center">Chat Page</h1>
+      </div>
+      <div id="middle">
+        <!-- <div id="left">
+        </div> -->
+        <div id="left">
+          <h2>User lists :</h2>
+          <ul>
+            {% for u in users %}
+              <li>{{ u.first_name }} {{ u.last_name }}
+                <br>
+                <br>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div id="right">
+          <h2>Messages :</h2>
+          <ul>
+            {% for m in messages %}
+                <li>
+                  {{ m.sender }} To {{m.receiver.first_name}} : {{m.text}}
+                  <br>{{m.date}}
+                  <br><br>
+                </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div>
+      <div id="footer_left">
+        <form action="/hw/list" method="POST" style="text-align:center">
+          <h3>New User:</h3>
+          First name:<br>
+          <input type="text" name="firstname" >
+          <br>
+          Last name:<br>
+          <input type="text" name="lastname" >
+          <br>
+          Number_Of_Friends:<br>
+          <input type="text" name="numberoffriends" >
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+      <div id="footer_right" style="text-align:center">
+        <form action="/hw/list" method="POST">
+          <h3>New Message:</h3>
+          Sender:<br>
+          <input type="text" name="sendername">
+          <br>
+          Receiver:<br>
+          <input type="text" name="receivername">
+          <br>
+          Text:<br>
+          <input type="text" name="Text",value="Type SomeThing..." >
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+    </div>
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <div>
+        <h1>Conversation :</h1>
+        <ul>
+          {% for c in conversation %}
+            <li><a href="/users/list/{{ c.id }}"> {{ c }} </a>
+              <br>
+              <br>
+            </li>
+          {% endfor %}
+      </ul>
+      </div>
+
+
+
+      <br> <br> <br>
+
+      <h2>Messages :</h2>
+      <ul>
+        {% for m in messages %}
+
+              Sender : {{ m.sender }}
+              <br>
+               Text : {{ m.text }}
+              <br>
+              Conversation : {{ m.conversation.name }}
+              <br>
+              {{ m.date }}
+              <hr>
+        {% endfor %}
+      </ul>
+
+    <!-- <div> -->
+    <!-- <div>
+      <form action="/users/list/" method="POST">
+        First name:<br>
+        <input type="text" name="firstname" >
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname" >
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div> -->
+    <div>
+      <form action="" method="POST">
+        Message:<br>
+        <input type="text" name="message" value="Type Sumething..." >
+        <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+  </body>
+</html>

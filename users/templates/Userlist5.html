@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <!-- <h1>User lists :</h1> -->
+      <div>
+        <h1>User lists :</h1>
+        <ul>
+          {% for u in users %}
+            <li>{{ u.first_name }} {{ u.last_name }}
+              <br>
+                <!-- {% for g in u.grades %}
+                  {{ g }}
+                {% endfor %} -->
+              <br>
+            </li>
+          {% endfor %}
+      </ul>
+    <!-- </div> -->
+        <h2>Messages :</h2>
+        <ul>
+          {% for m in messages %}
+              <li>
+                {{ m.sender }} To {{m.receiver.first_name}} : {{m.text}}
+                <br>{{m.date}}
+
+              </li>
+          {% endfor %}
+        </ul>
+      <!-- <div> -->
+
+      </div>
+
+
+
+
+      <div>
+        <form action="/users/list/" method="POST">
+          First name:<br>
+          <input type="text" name="firstname" >
+          <br>
+          Last name:<br>
+          <input type="text" name="lastname" >
+          <br><br>
+          Number_Of_Friends:<br>
+          <input type="text" name="numberoffriends" >
+          <br><br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+
+
+
+
+
+  </body>
+</html>

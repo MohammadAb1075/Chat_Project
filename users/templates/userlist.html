@@ -1,0 +1,80 @@
+<html lang="en" dir="ltr">
+  <head>
+    <body>
+          <h1>User List :</h1>
+          <ul>
+            {% for u in users %}
+              <li>
+                {{ u.get_fullname }}
+              </li>
+              {% for g in u.grades %}
+                {{ g }}
+              {% endfor %}
+
+            {% endfor %}
+        </ul>
+
+          <!-- {{name}} -->
+          <!-- {{text}} -->
+
+
+      <form action="/users/list/" method="POST">
+        First name:<br>
+        <input type="text" name="firstname" value="Mickey">
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname" value="Mouse">
+        <br><br>
+        <input type="submit" value="Submit">
+      </form> 
+          
+
+
+
+    </body>
+  </head>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body> -->
+
+
+      <!-- <h1> User List:</h1>
+      <p>
+          <ul>
+              <li>
+                  {{name}}
+              </li>
+              {{users}}
+          </ul>
+      </p> -->
+
+
+      <!-- <h1>User list:</h1>
+        <ul>
+            {% for u in users%}
+              <li>
+                  {{u.get_fullname}}
+              </li>
+            {%endfor%}
+        </ul>
+
+  </body>
+</html> -->
