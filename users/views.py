@@ -9,13 +9,13 @@ from django.contrib.auth import authenticate, login
 
 from django.core.mail import send_mail, BadHeaderError
 
-
+ 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from djangochat.utils import CsrfExemptSessionAuthentication
 from rest_framework.authentication import BasicAuthentication
-from users.serializers import RequestLoginSerializer, RequestGetSerializer, UserSerializer, RequestSignUpSerializer, ResponseUserListSerializer
+from users.serializers import *
 
 
 class SignUpView(APIView):
@@ -25,7 +25,7 @@ class SignUpView(APIView):
         if serializer.is_valid():
             u=serializer.save()
             print(u)
-            send_mail('subject', 'hiiiiiiiiiiiiiiiiii', 'mabdollah1375@gmail.com',['persianrobo4@gmail.com']) #list(request.data['email']))
+            # send_mail('subject', 'hiiiiiiiiiiiiiiiiii', 'mabdollah1375@gmail.com',['persianrobo4@gmail.com']) #list(request.data['email']))
             # print(mail)
             return Response(
                 {
@@ -86,6 +86,26 @@ class LoginView(APIView):
             )
 
 
+class EditProfileView(APIView):
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
+    def put(self,request):
+
+        # serializer = EditProfileSerializer(instance=request.user,data=request.data)
+        serializer = EditProfileSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.update(request.user,request.data)
+            # serializer.save()
+            return Response({
+                'message': 'your account have been Edited successfuly',
+                'data': serializer.data
+            })
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 class UserListItemView(APIView):

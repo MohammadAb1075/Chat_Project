@@ -8,7 +8,7 @@ from django.contrib.auth.models import AnonymousUser
 from chat.models import Conversation , Message
 from chat.serializers import *
 
-
+ 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
@@ -106,7 +106,7 @@ class ConversationList(APIView):
         )
 
     def post(self, request):
-        serializer = CreateConversationSerializer(data=request.data, many = True)
+        serializer = CreateConversationSerializer(data=request.data,many=True)
         if serializer.is_valid():
             serializer.save()
             return Response(

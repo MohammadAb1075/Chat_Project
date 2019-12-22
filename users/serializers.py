@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from datetime import datetime
 
-
+ 
 class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -52,6 +52,27 @@ class RequestGetSerializer(serializers.Serializer):
         required=False, allow_blank=False, max_length=100)
     last_name = serializers.CharField(
         required=False, allow_blank=False, max_length=100)
+
+
+class EditProfileSerializer(serializers.Serializer):
+    first_name = serializers.CharField(
+        required=False, allow_blank=False, max_length=100)
+    last_name = serializers.CharField(
+        required=False, allow_blank=False, max_length=100
+    )
+    def validate(self, data):
+        if 'first_name' not in data and 'last_name' not in data:
+            raise serializers.ValidationError(
+                'At least one of firstname or lastname parameters are required'
+            )
+        return data
+
+    def update(self,instance ,validated_data):
+        instance.first_name = validated_data['first_name']
+        instance.last_name  = validated_data['last_name']
+        # instance.created = validated_data.get('created', instance.created)
+        instance.save()
+        return  instance
 
 
 class UserSerializer(serializers.Serializer):

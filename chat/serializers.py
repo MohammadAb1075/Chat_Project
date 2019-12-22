@@ -1,4 +1,4 @@
-from datetime import datetime
+`from datetime import datetime
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
@@ -49,7 +49,7 @@ class EditMessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Message
-        fields =['id','text']
+        fields = ['id','text']
 
     def update(self,instance ,validated_data):
         instance.text  = validated_data['text']
@@ -69,7 +69,7 @@ class CreateConversationSerializer(serializers.ModelSerializer):
         model = Conversation
         fields = '__all__'
 
-
+    #
     # def create(self, data):
     #     c = Conversation(
     #         name = data['name'],
